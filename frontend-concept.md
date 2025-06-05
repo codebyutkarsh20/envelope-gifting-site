@@ -51,3 +51,10 @@ Page
 
 This layout keeps all required questions on one page while guiding the user step by step. It minimizes scrolling, provides clear call-to-action, and presents results in a dedicated area so users can easily review the recommendations.
 
+
+## Backend Integration
+The frontend will send the form data to a backend service via a JSON API.
+This service will analyze the answers and return 4–5 recommended gifts.
+Each recommendation should include a title, product image URL, brief metadata (such as price or review score) and a link to purchase online.
+The results area will map these fields into clickable cards so users can immediately explore the suggested items.
+
