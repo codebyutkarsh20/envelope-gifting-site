@@ -2,26 +2,106 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Envelope Gifting – Smart Gift Ideas</title>
+  <title>Envelope Gifting – Gift Recommendation</title>
   <style>
-    body{font-family:sans-serif;max-width:650px;margin:auto;padding:1rem}
-    .card{border:1px solid #ddd;border-radius:8px;padding:1rem;margin:1rem 0}
-    img{max-width:120px}
+    body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 1rem; background: #f9f9f9; }
+    h1 { text-align: center; }
+    form { background: #fff; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .field { margin-bottom: 1rem; }
+    label { display: block; margin-bottom: .25rem; font-weight: bold; }
+    select { width: 100%; padding: 0.25rem; }
+    .tag-list label { margin-right: 1rem; }
+    #results { margin-top: 2rem; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; margin: 1rem 0; display: flex; align-items: center; background:#fff; }
+    .card img { max-width: 120px; margin-right: 1rem; }
+    button { background: #0275d8; color: #fff; border: none; padding: .5rem 1rem; border-radius: 4px; cursor: pointer; }
   </style>
 </head>
 <body>
 <h1>Envelope Gifting</h1>
-<p>Personalised gift recommendations powered by AI.<br>
-<em>As an Amazon Associate I earn from qualifying purchases.</em></p>
-
-<div class="card">
-  <h3>Hand-Painted Ceramic Mug</h3>
-  <a href="https://www.amazon.in/dp/B09XYZ1234?tag=YOURTAG-21">
-     <img src="https://m.media-amazon.com/images/I/81abcXYZ.jpg" alt="">
-  </a>
-  <p>An artsy mug that’s perfect for painters and coffee lovers alike.</p>
-</div>
-
-<!-- add two-three more sample items -->
+<form id="gift-form">
+  <div class="field">
+    <label for="relationship">1. Relationship with Recipient</label>
+    <select id="relationship" required>
+      <option value="">Select...</option>
+      <option>Friend</option>
+      <option>Family</option>
+      <option>Colleague</option>
+      <option>Partner</option>
+      <option>Other</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="occasion">2. Occasion</label>
+    <select id="occasion" required>
+      <option value="">Select...</option>
+      <option>Birthday</option>
+      <option>Anniversary</option>
+      <option>Graduation</option>
+      <option>Holiday</option>
+      <option>Other</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>3. Recipient's Age Group</label>
+    <label><input type="radio" name="age" value="child" required>Child 0–12</label>
+    <label><input type="radio" name="age" value="teen">Teenager 13–19</label>
+    <label><input type="radio" name="age" value="adult">Adult 20–64</label>
+    <label><input type="radio" name="age" value="senior">Senior 65+</label>
+  </div>
+  <div class="field">
+    <label>4. Interests or Hobbies</label>
+    <div class="tag-list">
+      <label><input type="checkbox" name="interest" value="sports">Sports</label>
+      <label><input type="checkbox" name="interest" value="reading">Reading</label>
+      <label><input type="checkbox" name="interest" value="technology">Technology</label>
+      <label><input type="checkbox" name="interest" value="fashion">Fashion</label>
+      <label><input type="checkbox" name="interest" value="music">Music</label>
+      <label><input type="checkbox" name="interest" value="art">Art</label>
+      <label><input type="checkbox" name="interest" value="travel">Travel</label>
+      <label><input type="checkbox" name="interest" value="other">Other</label>
+    </div>
+  </div>
+  <div class="field">
+    <label>5. Personality Type</label>
+    <label><input type="radio" name="personality" value="outgoing" required>Outgoing/Extroverted</label>
+    <label><input type="radio" name="personality" value="introverted">Introverted/Reserved</label>
+    <label><input type="radio" name="personality" value="creative">Creative/Artistic</label>
+    <label><input type="radio" name="personality" value="practical">Practical/Down-to-Earth</label>
+  </div>
+  <div class="field">
+    <label for="budget">6. Budget Range</label>
+    <select id="budget" required>
+      <option value="">Select...</option>
+      <option>Under $25</option>
+      <option>$25–$50</option>
+      <option>$50–$100</option>
+      <option>Over $100</option>
+    </select>
+  </div>
+  <button type="submit">Get Recommendations</button>
+</form>
+<div id="results"></div>
+<script>
+document.getElementById('gift-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const results = document.getElementById('results');
+  results.innerHTML = '';
+  const items = [
+    {title:'Hand-Painted Ceramic Mug', link:'#', img:'https://via.placeholder.com/120', desc:'An artsy mug perfect for painters and coffee lovers.'},
+    {title:'Noise Cancelling Headphones', link:'#', img:'https://via.placeholder.com/120', desc:'Great for music lovers or focused work.'},
+    {title:'Travel Journal Set', link:'#', img:'https://via.placeholder.com/120', desc:'Ideal for avid travelers to record their adventures.'},
+    {title:'DIY Electronics Kit', link:'#', img:'https://via.placeholder.com/120', desc:'A fun project for technology enthusiasts.'}
+  ];
+  items.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = '<img src="'+item.img+'" alt="">' +
+      '<div><h3><a href="'+item.link+'">'+item.title+'</a></h3>' +
+      '<p>'+item.desc+'</p></div>';
+    results.appendChild(card);
+  });
+});
+</script>
 </body>
 </html>
